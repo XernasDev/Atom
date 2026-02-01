@@ -5,6 +5,15 @@ import java.nio.file.Path;
 
 public class FileUtils {
 
+    public static String getFileName(Path path) {
+        Path fileName = path.getFileName();
+        return (fileName != null) ? fileName.toString() : "";
+    }
+
+    public static String getFileName(String filePath) {
+        return getFileName(Path.of(filePath));
+    }
+
     public static Path directories(Path basePath, Path relativePath) {
          Path directoryPath = basePath.resolve(relativePath).normalize();
          if (!directoryPath.toFile().exists() && !directoryPath.toFile().mkdirs()) throw new RuntimeException("Could not create directory: " + directoryPath);
